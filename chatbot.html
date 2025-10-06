@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bufalín - Tu Asistente Turístico</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="gradient-bg min-h-screen text-white">
+  <div id="sidebar-container"></div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40 hidden opacity-0"></div>
+  
+  <!-- Main Content -->
+  <div class="flex flex-col h-screen">
+    <!-- Header -->
+    <header class="glass-effect shadow-lg">
+      <div class="flex items-center justify-between p-4">
+        <button onclick="toggleMenu()" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <div class="flex items-center gap-3">
+            <img src="img/bufaliiin.png" alt="Bufalín" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-md" />
+          <h1 class="text-xl font-bold">Bufalín</h1>
+        </div>
+        <div class="w-10"></div>
+      </div>
+    </header>
+
+    <!-- Chat Area -->
+    <div id="chatArea" class="flex-1 overflow-y-auto p-4 pb-24">
+      <!-- Empty State -->
+      <div id="emptyState" class="empty-state flex items-center justify-center h-full">
+        <div class="text-center max-w-md px-6">
+          <h2 class="text-3xl font-bold mb-4 bg-white bg-clip-text text-transparent">
+            ¡Hola! Soy Bufalín
+          </h2>
+          <p class="text-lg text-gray-300 leading-relaxed mb-6">
+            Tu asistente turístico personal. Estoy aquí para ayudarte a descubrir los mejores lugares, restaurantes, actividades y servicios que esta hermosa ciudad tiene para ofrecer. 
+          </p>
+        </div>
+      </div>
+
+      <!-- Messages Container -->
+      <div id="messagesContainer" class="space-y-4 hidden">
+        <!-- Bot Profile -->
+        <div class="flex items-start gap-3 mb-6">
+          <div class="w-12 h-12 rounded-full glass-effect flex items-center justify-center text-2xl shadow-lg">
+            🦬
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg">Bufalín</h3>
+            <p class="text-sm text-gray-400">Tu asistente turístico</p>
+          </div>
+        </div>
+
+        <!-- Welcome Message -->
+        <div class="flex gap-3 message-bubble">
+          <div class="w-8 h-8 rounded-full glass-effect flex items-center justify-center text-lg flex-shrink-0">
+            🦬
+          </div>
+          <div class="glass-effect rounded-2xl rounded-tl-none p-4 max-w-xs shadow-lg">
+            <p class="text-sm">¡Hola! Soy Bufalín 🦬, tu asistente turístico personal. ¿En qué puedo ayudarte hoy?</p>
+            <span class="text-xs text-gray-400 mt-2 block">20:21</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="fixed bottom-0 left-0 right-0 p-4 glass-effect shadow-2xl">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex items-center gap-3">
+          <input 
+            type="text" 
+            id="messageInput"
+            placeholder="Escribe tu mensaje..."
+            class="chat-input flex-1 bg-white bg-opacity-10 rounded-2xl px-6 py-4 text-white placeholder-gray-400 transition-all duration-300"
+            onkeypress="handleKeyPress(event)"
+          />
+          <button 
+            onclick="sendMessage()"
+            class="bg-white p-4 rounded-2xl hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            <i class="fas fa-arrow-up text-black"></i>
+          </button>
+        </div>
+        <p class="text-xs text-gray-400 mt-2 text-center">Presiona Enter para enviar</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

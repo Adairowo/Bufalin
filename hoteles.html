@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hoteles - Guía Turística</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="gradient-bg min-h-screen text-white">
+  <div id="sidebar-container"></div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40 hidden opacity-0"></div>
+  
+  <!-- Main Content -->
+  <div class="flex flex-col h-screen">
+    <!-- Header -->
+    <header class="glass-effect shadow-lg">
+      <div class="flex items-center justify-between p-4">
+        <button onclick="toggleMenu()" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <div class="flex items-center gap-3">
+          <i class="fas fa-hotel text-xl text3 w-8 flex-shrink-0 text-center"></i>
+          <h1 class="text-xl font-bold">Hoteles</h1>
+        </div>
+        <div class="w-10"></div>
+      </div>
+    </header>
+
+    <!-- Hotels Section -->
+    <div id="hotelsSection" class="flex-1 overflow-y-auto p-6 pb-24">
+      <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="flex items-center justify-center mb-8 fade-in">
+          <h2 class="text-3xl font-bold text-center w-full">Hoteles Recomendados</h2>
+        </div>
+
+        <!-- Hotels Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Hotel 1 -->
+          <div class="hotel-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop" alt="Grand Hotel Plaza" class="hotel-image w-full h-full object-cover">
+              <div class="absolute top-4 right-4 bg-[#511730] px-3 py-1 rounded-full text-sm font-bold">
+                 <i class="fas fa-star w-4 h-4 text-yellow-400"></i> <a class="text-white">4.8</a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Grand Hotel Plaza</h3>
+                <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt w-4 h-4"></i>
+                <span class="t ext-sm">Centro Histórico, Ciudad Juárez</span>
+                </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-gray-400 text-sm">Desde</p>
+                  <p class="text-2xl font-bold text-white">$1,299 <span class="text-sm text-gray-400">MXN/noche</span></p>
+                </div>
+                <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hotel 2 -->
+          <div class="hotel-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in" style="animation-delay: 0.1s;">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&h=400&fit=crop" alt="Hotel Boutique Río" class="hotel-image w-full h-full object-cover">
+              <div class="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 px-3 py-1 rounded-full text-sm font-bold">
+                ⭐ 4.9
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Hotel Boutique Río</h3>
+              <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-sm">Zona Pronaf, Ciudad Juárez</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-gray-400 text-sm">Desde</p>
+                  <p class="text-2xl font-bold text-pink-400">$1,850 <span class="text-sm text-gray-400">MXN/noche</span></p>
+                </div>
+                <button class="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all font-semibold">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hotel 3 -->
+          <div class="hotel-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in" style="animation-delay: 0.2s;">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&h=400&fit=crop" alt="Suites Ejecutivas del Norte" class="hotel-image w-full h-full object-cover">
+              <div class="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 px-3 py-1 rounded-full text-sm font-bold">
+                ⭐ 4.7
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Suites Ejecutivas del Norte</h3>
+              <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-sm">Zona Comercial, Ciudad Juárez</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-gray-400 text-sm">Desde</p>
+                  <p class="text-2xl font-bold text-pink-400">$2,150 <span class="text-sm text-gray-400">MXN/noche</span></p>
+                </div>
+                <button class="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all font-semibold">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hotel 4 -->
+          <div class="hotel-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in" style="animation-delay: 0.3s;">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&h=400&fit=crop" alt="Hotel Misión Express" class="hotel-image w-full h-full object-cover">
+              <div class="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 px-3 py-1 rounded-full text-sm font-bold">
+                ⭐ 4.5
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Hotel Misión Express</h3>
+              <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-sm">Aeropuerto, Ciudad Juárez</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-gray-400 text-sm">Desde</p>
+                  <p class="text-2xl font-bold text-pink-400">$999 <span class="text-sm text-gray-400">MXN/noche</span></p>
+                </div>
+                <button class="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all font-semibold">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hotel 5 -->
+          <div class="hotel-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in md:col-span-2" style="animation-delay: 0.4s;">
+            <div class="md:flex">
+              <div class="relative md:w-1/2 h-64 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&h=400&fit=crop" alt="Resort Las Dunas" class="hotel-image w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 px-3 py-1 rounded-full text-sm font-bold">
+                  ⭐ 5.0
+                </div>
+              </div>
+              <div class="p-6 md:w-1/2 flex flex-col justify-between">
+                <div>
+                  <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 px-3 py-1 rounded-full text-xs font-bold mb-3">
+                    🏆 MÁS POPULAR
+                  </div>
+                  <h3 class="text-2xl font-bold mb-2">Resort Las Dunas</h3>
+                  <div class="flex items-center gap-2 text-gray-300 mb-4">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm">Zona Samalayuca, Ciudad Juárez</span>
+                  </div>
+                  <p class="text-gray-400 text-sm mb-4">Hotel premium con vista a las dunas, spa de lujo, alberca infinity y restaurante gourmet. Experiencia única en el desierto.</p>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-gray-400 text-sm">Desde</p>
+                    <p class="text-3xl font-bold text-pink-400">$3,499 <span class="text-sm text-gray-400">MXN/noche</span></p>
+                  </div>
+                  <button class="bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all font-semibold text-lg">
+                    Ver más
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
