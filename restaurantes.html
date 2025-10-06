@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Restaurantes - Bufalín</title>
+  <title>Restaurantes - Guía Turística</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body class="gradient-bg min-h-screen text-white">
   <div id="sidebar-container"></div>
+
   <!-- Overlay -->
   <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40 hidden opacity-0"></div>
-
+  
   <!-- Main Content -->
-  <div class="flex flex-col h-screen">
+  <div class="flex flex-col">
     <!-- Header -->
-    <header class="glass-effect shadow-lg">
+    <header class="glass-effect shadow-lg sticky top-0 z-30">
       <div class="flex items-center justify-between p-4">
         <button onclick="toggleMenu()" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -23,17 +25,200 @@
           </svg>
         </button>
         <div class="flex items-center gap-3">
+          <i class="fas fa-utensils text-xl text3 w-8 flex-shrink-0 text-center"></i>
           <h1 class="text-xl font-bold">Restaurantes</h1>
         </div>
         <div class="w-10"></div>
       </div>
     </header>
 
-    <!-- Restaurantes content -->
-    <div class="flex-1 overflow-y-auto p-4 pb-24">
-        <h2 class="text-3xl font-bold text-center my-8">Nuestros Restaurantes Recomendados</h2>
-        <p class="text-center">Próximamente...</p>
-        <!-- Placeholder for restaurant list -->
+    <!-- Restaurants Section -->
+    <div id="restaurantsSection" class="p-6 pb-24">
+      <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="flex items-center justify-center mb-8 fade-in">
+          <h2 class="text-3xl font-bold text-center w-full">Restaurantes Recomendados</h2>
+        </div>
+
+        <!-- Restaurants Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Restaurante 1 -->
+          <div class="restaurant-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop" alt="La Casona" class="restaurant-image w-full h-full object-cover">
+              <div class="absolute top-4 right-4 bg-[#511730] px-3 py-1 rounded-full text-sm font-bold">
+                 <i class="fas fa-star w-4 h-4 text-yellow-400"></i> <a class="text-white">4.8</a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">La Casona</h3>
+                <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt w-4 h-4"></i>
+                <span class="text-sm">Centro Histórico, Ciudad Juárez</span>
+                </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-gray-400 text-sm">Precio</p>
+                  <p class="text-2xl font-bold text-white">$$ <span class="text-sm text-gray-400">- $$$</span></p>
+                </div>
+                <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Restaurante 2 -->
+          <div class="restaurant-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in" style="animation-delay: 0.1s;">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=600&h=400&fit=crop" alt="El Tragadero" class="restaurant-image w-full h-full object-cover">
+              <div class="absolute top-4 right-4 bg-[#511730] px-3 py-1 rounded-full text-sm font-bold">
+                 <i class="fas fa-star w-4 h-4 text-yellow-400"></i> <a class="text-white">4.9</a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">El Tragadero</h3>
+                <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt w-4 h-4"></i>
+                <span class="text-sm">Zona Pronaf, Ciudad Juárez</span>
+                </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-gray-400 text-sm">Precio</p>
+                  <p class="text-2xl font-bold text-white">$$$ <span class="text-sm text-gray-400">- $$$$</span></p>
+                </div>
+                <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Restaurante 3 -->
+          <div class="restaurant-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in" style="animation-delay: 0.2s;">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop" alt="Katsura" class="restaurant-image w-full h-full object-cover">
+              <div class="absolute top-4 right-4 bg-[#511730] px-3 py-1 rounded-full text-sm font-bold">
+                 <i class="fas fa-star w-4 h-4 text-yellow-400"></i> <a class="text-white">4.7</a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Katsura</h3>
+                <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt w-4 h-4"></i>
+                <span class="text-sm">Zona Comercial, Ciudad Juárez</span>
+                </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-gray-400 text-sm">Precio</p>
+                  <p class="text-2xl font-bold text-white">$$$ <span class="text-sm text-gray-400">- $$$$</span></p>
+                </div>
+                <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Restaurante 4 -->
+          <div class="restaurant-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in" style="animation-delay: 0.3s;">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop" alt="Viva México" class="restaurant-image w-full h-full object-cover">
+              <div class="absolute top-4 right-4 bg-[#511730] px-3 py-1 rounded-full text-sm font-bold">
+                 <i class="fas fa-star w-4 h-4 text-yellow-400"></i> <a class="text-white">4.5</a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Viva México</h3>
+                <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt w-4 h-4"></i>
+                <span class="text-sm">Aeropuerto, Ciudad Juárez</span>
+                </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-gray-400 text-sm">Precio</p>
+                  <p class="text-2xl font-bold text-white">$$ <span class="text-sm text-gray-400">- $$$</span></p>
+                </div>
+                <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Restaurante 5 -->
+          <div class="restaurant-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in md:col-span-2" style="animation-delay: 0.4s;">
+            <div class="md:flex">
+              <div class="relative md:w-1/2 h-64 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop" alt="El Arriero" class="restaurant-image w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-[#511730] px-3 py-1 rounded-full text-sm font-bold">
+                   <i class="fas fa-star w-4 h-4 text-yellow-400"></i> <a class="text-white">5.0</a>
+                </div>
+              </div>
+              <div class="p-6 md:w-1/2 flex flex-col justify-between">
+                <div>
+                  <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 px-3 py-1 rounded-full text-xs font-bold mb-3">
+                    <i class="fas fa-trophy w-4 h-4 text-white"></i> MEJOR CARNE
+                  </div>
+                  <h3 class="text-2xl font-bold mb-2">El Arriero</h3>
+                  <div class="flex items-center gap-2 text-gray-300 mb-4">
+                    <i class="fas fa-map-marker-alt w-4 h-4"></i>
+                    <span class="text-sm">Zona Dorada, Ciudad Juárez</span>
+                  </div>
+                  <p class="text-gray-400 text-sm mb-4">El mejor lugar para disfrutar de un buen corte de carne en la ciudad. Ambiente familiar y la mejor calidad.</p>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-gray-400 text-sm">Precio</p>
+                    <p class="text-3xl font-bold text-white">$$$$ <span class="text-sm text-gray-400"></span></p>
+                  </div>
+                  <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
+                    Ver más
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+
+<div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <a href="#">
+        <img class="p-8 rounded-t-lg" src="/docs/images/products/apple-watch.png" alt="product image" />
+    </a>
+    <div class="px-5 pb-5">
+        <a href="#">
+            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport</h5>
+        </a>
+        <div class="flex items-center mt-2.5 mb-5">
+            <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+                <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+            </div>
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
+        </div>
+        <div class="flex items-center justify-between">
+            <span class="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+            <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+        </div>
+    </div>
+</div>
+
+        </div>
+      </div>
     </div>
   </div>
 

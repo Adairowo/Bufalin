@@ -100,6 +100,27 @@
       animation: fadeIn 0.5s ease-out;
     }
 
+    .restaurant-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .restaurant-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .restaurant-image {
+      transition: transform 0.5s ease;
+    }
+
+    .restaurant-card:hover .restaurant-image {
+      transform: scale(1.1);
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;
