@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurantes - Guía Turística</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="gradient-bg min-h-screen text-white">
+  <div id="sidebar-container"></div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40 hidden opacity-0"></div>
+  
+  <!-- Main Content -->
+  <div class="flex flex-col">
+    <!-- Header -->
+    <header class="glass-effect shadow-lg sticky top-0 z-30">
+      <div class="flex items-center justify-between p-4">
+        <button onclick="toggleMenu()" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <div class="flex items-center gap-3">
+          <i class="fas fa-map-marker-alt text-xl text3 w-8 flex-shrink-0 text-center"></i>
+          <h1 class="text-xl font-bold">Puntos de interés</h1>
+        </div>
+        <div class="w-10"></div>
+      </div>
+    </header>
+
+    <!-- Restaurants Section -->
+    <div id="restaurantsSection" class="p-6 pb-24">
+      <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="flex items-center justify-center mb-8 fade-in">
+          <h2 class="text-3xl font-bold text-center w-full">Puntos de interés</h2>
+        </div>
+
+        <!-- Restaurants Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Paquimé -->
+          <div class="restaurant-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/40/66/fa/20190419-133023-largejpg.jpg?w=400&h=-1&s=1" alt="Paquimé" class="restaurant-image w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Paquimé</h3>
+              <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt w-4 h-4"></i>
+                <span class="text-sm">Casas Grandes, Chihuahua</span>
+              </div>
+              <div class="flex items-center justify-end">
+                <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Museo de las Culturas del Norte -->
+          <div class="restaurant-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in" style="animation-delay: 0.1s;">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://gdu.com.mx/wp-content/uploads/2023/05/TOMA15-thegem-gallery-metro.jpg" alt="Museo de las Culturas del Norte" class="restaurant-image w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Museo de las Culturas del Norte</h3>
+              <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt w-4 h-4"></i>
+                <span class="text-sm">Casas Grandes, Chihuahua</span>
+              </div>
+              <div class="flex items-center justify-end">
+                <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cueva de la Olla -->
+          <div class="restaurant-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in" style="animation-delay: 0.2s;">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://c2.staticflickr.com/4/3650/3509117004_ce2a0b6c03_b.jpg" alt="Cueva de la Olla" class="restaurant-image w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Cueva de la Olla</h3>
+              <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt w-4 h-4"></i>
+                <span class="text-sm">Casas Grandes, Chihuahua</span>
+              </div>
+              <div class="flex items-center justify-end">
+                <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Punto de interes 4 -->
+          <div class="restaurant-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in" style="animation-delay: 0.3s;">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://www.nomonday.mx/wp-content/uploads/2022/01/Vista-de-Laguna-Fierro-en-Casas-Grandes-Chihuahua-Mexico-01.png" alt="Hacienda de San Diego" class="restaurant-image w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Laguna Fierro</h3>
+              <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt w-4 h-4"></i>
+                <span class="text-sm">Nuevo Casas Grandes, Chihuahua</span>
+              </div>
+              <div class="flex items-center justify-end">
+                <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

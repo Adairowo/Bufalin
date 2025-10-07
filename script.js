@@ -77,7 +77,7 @@ let messagesStarted = false;
         const botMessageHTML = `
           <div class="flex gap-3 message-bubble">
             <div class="w-8 h-8 rounded-full glass-effect flex items-center justify-center text-lg flex-shrink-0">
-              🦬
+              <img src="img/bufaliiin.png" alt="Bot" class="w-6 h-6 rounded-full"> </img>
             </div>
             <div class="glass-effect rounded-2xl rounded-tl-none p-4 max-w-xs shadow-lg">
               <p class="text-sm">¡Claro! Déjame ayudarte con eso. ¿Podrías darme más detalles sobre lo que buscas?</p>
