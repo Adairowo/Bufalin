@@ -52,9 +52,9 @@ let messagesStarted = false;
 
       // User message
       const userMessageHTML = `
-        <div class="flex gap-3 justify-end message-bubble mt-3">
-          <div class="glass-effect rounded-2xl rounded-tl-none p-4 max-w-xs shadow-lg">
-            <p class="text-sm">${message}</p>
+        <div class="flex gap-3 justify-end message-bubble mt-8">
+          <div class="glass-effect rounded-2xl rounded-tl-none p-4 max-w-xs shadow-lg break-words">
+            <p class="text-sm whitespace-pre-wrap">${message}</p>
           </div>
         </div>
       `;
@@ -71,9 +71,9 @@ let messagesStarted = false;
       // Bot response (simulated)
       setTimeout(() => {
         const botMessageHTML = `
-          <div class="flex gap-3 mt-3">
-            <div class="rounded-tl-none max-w-xs">
-              <p class="text-base">¡Claro! Déjame ayudarte con eso. ¿Podrías darme más detalles sobre lo que buscas?</p>
+          <div class="flex gap-3 mt-8">
+            <div class="rounded-2xl rounded-tr-none max-w-md break-words w-full">
+              <p class="text-sm whitespace-pre-wrap">¡Claro! Déjame ayudarte con eso. ¿Podrías darme más detalles sobre lo que buscas?</p>
             </div>
           </div>
         `;
