@@ -34,47 +34,28 @@
 
     <!-- Chat Area -->
     <div id="chatArea" class="flex-1 overflow-y-auto p-4 pb-24">
-      <!-- Empty State -->
-      <div id="emptyState" class="empty-state flex items-center justify-center h-full">
-        <div class="text-center max-w-md px-6">
-          <h2 class="text-3xl font-bold mb-4 bg-white bg-clip-text text-transparent">
-            ¡Hola! Soy Bufalín
-          </h2>
-          <p class="text-lg text-gray-300 leading-relaxed mb-6">
-            Tu asistente turístico personal. Estoy aquí para ayudarte a descubrir los mejores lugares, restaurantes, actividades y servicios que esta hermosa ciudad tiene para ofrecer. 
-          </p>
-        </div>
-      </div>
-
-      <!-- Messages Container -->
-      <div id="messagesContainer" class="space-y-4 hidden">
-        <!-- Bot Profile -->
-        <div class="flex items-start gap-3 mb-6">
-          <div class="w-12 h-12 rounded-full glass-effect flex items-center justify-center text-2xl shadow-lg">
-            🦬
-          </div>
-          <div>
-            <h3 class="font-semibold text-lg">Bufalín</h3>
-            <p class="text-sm text-gray-400">Tu asistente turístico</p>
+      <div class="max-w-full sm:max-w-3xl lg:max-w-2xl xl:max-w-xl mx-auto h-full">
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state flex items-center justify-center h-full">
+          <div class="text-center max-w-md px-6">
+            <h2 class="text-3xl font-bold mb-4 bg-white bg-clip-text text-transparent">
+              ¡Hola! Soy Bufalín
+            </h2>
+            <p class="text-lg text-gray-300 leading-relaxed mb-6">
+              Tu asistente turístico personal. Estoy aquí para ayudarte a descubrir los mejores lugares, restaurantes, actividades y servicios que esta hermosa ciudad tiene para ofrecer. 
+            </p>
           </div>
         </div>
 
-        <!-- Welcome Message -->
-        <div class="flex gap-3 message-bubble">
-          <div class="w-8 h-8 rounded-full glass-effect flex items-center justify-center text-lg flex-shrink-0">
-            🦬
-          </div>
-          <div class="glass-effect rounded-2xl rounded-tl-none p-4 max-w-xs shadow-lg">
-            <p class="text-sm">¡Hola! Soy Bufalín 🦬, tu asistente turístico personal. ¿En qué puedo ayudarte hoy?</p>
-            <span class="text-xs text-gray-400 mt-2 block">20:21</span>
-          </div>
+        <!-- Messages Container -->
+        <div id="messagesContainer" class="hidden">
         </div>
       </div>
     </div>
 
     <!-- Input Area -->
     <div class="fixed bottom-0 left-0 right-0 p-4 glass-effect shadow-2xl">
-      <div class="max-w-full sm:max-w-2xl lg:max-w-xl xl:max-w-lg mx-auto">
+      <div class="max-w-full sm:max-w-3xl lg:max-w-2xl xl:max-w-xl mx-auto">
       <div class="relative">
         <input
         type="text"
