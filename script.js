@@ -52,7 +52,7 @@ let messagesStarted = false;
 
       // User message
       const userMessageHTML = `
-        <div class="flex gap-3 justify-end message-bubble">
+        <div class="flex gap-3 justify-end message-bubble mt-3">
           <div class="glass-effect rounded-2xl rounded-tl-none p-4 max-w-xs shadow-lg">
             <p class="text-sm">${message}</p>
           </div>
@@ -71,7 +71,7 @@ let messagesStarted = false;
       // Bot response (simulated)
       setTimeout(() => {
         const botMessageHTML = `
-          <div class="flex gap-3">
+          <div class="flex gap-3 mt-3">
             <div class="rounded-tl-none max-w-xs">
               <p class="text-base">¡Claro! Déjame ayudarte con eso. ¿Podrías darme más detalles sobre lo que buscas?</p>
             </div>

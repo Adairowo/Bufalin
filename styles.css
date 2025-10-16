@@ -143,3 +143,26 @@
     padding-right: 0.5rem;
   }
 }
+
+
+/* Estilos para navegadores WebKit (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  /* Color del fondo de la pista, ligeramente visible */
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  /* Color de la barra que se desliza */
+  background: rgba(255, 255, 255, 0.4); 
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  /* Color de la barra al pasar el mouse por encima */
+  background: rgba(255, 255, 255, 0.6); 
+}
