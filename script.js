@@ -34,7 +34,7 @@ let messagesStarted = false;
       }
     }
 
-    function sendMessage() {
+    async function sendMessage() {
       const input = document.getElementById('messageInput');
       const message = input.value.trim();
       
@@ -48,7 +48,6 @@ let messagesStarted = false;
       }
 
       const messagesContainer = document.getElementById('messagesContainer');
-      const time = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
 
       // User message
       const userMessageHTML = `
@@ -68,21 +67,73 @@ let messagesStarted = false;
         chatArea.scrollTop = chatArea.scrollHeight;
       }, 100);
 
-      // Bot response (simulated)
+      // Show typing indicator
+      const typingIndicatorHTML = `
+        <div id="typing-indicator" class="flex gap-3 mt-8">
+          <div class="flex items-center gap-2 text-sm text-gray-400">
+            <img src="img/bufaliiin.png" alt="Bufalín" class="w-8 h-8 rounded-full object-cover" />
+            <span>Bufalín está escribiendo...</span>
+            <div class="w-2 h-2 rounded-full bg-white animate-bounce [animation-delay:-.3s]"></div>
+            <div class="w-2 h-2 rounded-full bg-white animate-bounce [animation-delay:-.15s]"></div>
+            <div class="w-2 h-2 rounded-full bg-white animate-bounce"></div>
+          </div>
+        </div>
+      `;
+      messagesContainer.insertAdjacentHTML('beforeend', typingIndicatorHTML);
       setTimeout(() => {
-        const botMessageHTML = `
-          <div class="flex gap-3 mt-8">
-            <div class="rounded-2xl rounded-tr-none max-w-md break-words w-full">
-              <p class="text-sm whitespace-pre-wrap">¡Claro! Déjame ayudarte con eso. ¿Podrías darme más detalles sobre lo que buscas?</p>
-            </div>
+        chatArea.scrollTop = chatArea.scrollHeight;
+      }, 100);
+
+      // Bot response from our API
+      try {
+        // 1. Crear el contenedor para la respuesta del bot
+        const botMessageContainer = document.createElement('div');
+        botMessageContainer.className = "flex gap-3 mt-4 message-bubble";
+        botMessageContainer.innerHTML = `
+          <div class="rounded-2xl rounded-tl-none p-4 max-w-md break-words">
+            <p class="text-sm whitespace-pre-wrap"></p>
           </div>
         `;
-        messagesContainer.insertAdjacentHTML('beforeend', botMessageHTML);
         
-        setTimeout(() => {
-          chatArea.scrollTop = chatArea.scrollHeight;
-        }, 100);
-      }, 1000);
+        // Quitar el indicador de "escribiendo" y añadir el nuevo contenedor de mensaje
+        document.getElementById('typing-indicator')?.remove();
+        messagesContainer.appendChild(botMessageContainer);
+        const botTextElement = botMessageContainer.querySelector('p');
+        chatArea.scrollTop = chatArea.scrollHeight;
+
+        // 2. Hacer la petición a la API
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: message }),
+        });
+        
+        if (!response.ok) {
+          throw new Error('La respuesta de la red no fue correcta.');
+        }
+
+        // 3. Leer el stream
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          
+          const chunk = decoder.decode(value, { stream: true });
+          botTextElement.textContent += chunk;
+          chatArea.scrollTop = chatArea.scrollHeight; // Auto-scroll
+        }
+
+      } catch (error) {
+        console.error("Error al obtener respuesta del bot:", error);
+        document.getElementById('typing-indicator')?.remove(); // Asegurarse de quitarlo en caso de error
+        // Aquí podrías mostrar un mensaje de error en el chat.
+      } finally {
+        setTimeout(() => chatArea.scrollTop = chatArea.scrollHeight, 100);
+      }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
