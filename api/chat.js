@@ -29,7 +29,7 @@ export default async function handler(req) {
       return new Response(JSON.stringify({ error: 'No message provided' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
 
     const chatPrompt = `
       Eres Bufalín, un amigable y servicial asistente turístico para la ciudad de Nuevo Casas Grandes, Chihuahua, México.
