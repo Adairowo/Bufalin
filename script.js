@@ -130,7 +130,14 @@ let messagesStarted = false;
       } catch (error) {
         console.error("Error al obtener respuesta del bot:", error);
         document.getElementById('typing-indicator')?.remove(); // Asegurarse de quitarlo en caso de error
-        // Aquí podrías mostrar un mensaje de error en el chat.
+        // Mostrar un mensaje de error en el chat
+        const errorMessageHTML = `
+          <div class="flex gap-3 mt-4 message-bubble">
+            <div class="glass-effect rounded-2xl rounded-tl-none p-4 max-w-md break-words border border-red-500/50">
+              <p class="text-sm text-red-300">Lo siento, estoy teniendo problemas para conectarme. Por favor, inténtalo de nuevo más tarde.</p>
+            </div>
+          </div>`;
+        messagesContainer.insertAdjacentHTML('beforeend', errorMessageHTML);
       } finally {
         setTimeout(() => chatArea.scrollTop = chatArea.scrollHeight, 100);
       }

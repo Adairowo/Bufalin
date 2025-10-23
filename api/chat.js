@@ -5,7 +5,13 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 export const config = { runtime: 'edge' };
 
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+const apiKey = process.env.GOOGLE_API_KEY;
+if (!apiKey) {
+  // Esto se registrará en los logs de Vercel si la clave no está configurada.
+  console.error("GOOGLE_API_KEY no está configurada en las variables de entorno.");
+}
+
+const genAI = new GoogleGenerativeAI(apiKey || "");
 
 export default async function handler(req) {
   if (req.method !== 'POST') {
@@ -13,6 +19,10 @@ export default async function handler(req) {
   }
 
   try {
+    if (!apiKey) {
+      throw new Error("La clave de API del servidor no está configurada.");
+    }
+
     const { message } = await req.json();
 
     if (!message) {
@@ -49,6 +59,10 @@ export default async function handler(req) {
     return new Response(stream, { headers: { 'Content-Type': 'text/plain' } });
   } catch (error) {
     console.error('Error calling Google AI:', error);
-    return new Response("Error al contactar la IA.", { status: 500 });
+    // Devuelve un mensaje de error más específico si es un problema de configuración.
+    const errorMessage = error.message.includes("API del servidor no está configurada")
+      ? "Error de configuración en el servidor."
+      : "Error al contactar la IA.";
+    return new Response(errorMessage, { status: 500 });
   }
 }
