@@ -89,44 +89,71 @@
   <script src="script.js"></script>
   <!-- Carga el cliente de Supabase -->
   <script type="module">
-    import { loadDataAndRender } from './JS/data-loader.js';
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-    /**
-     * Define cómo se "dibuja" la tarjeta de un hotel.
-     * @param {object} hotel - El objeto de datos del hotel desde Supabase.
-     * @returns {string} El HTML de la tarjeta.
-     */
-    function renderHotelCard(hotel) {
-      return `
-        <div class="hotel-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in">
-          <div class="relative h-48 overflow-hidden">
-            <img src="${hotel.imagen_url}" alt="${hotel.nombre}" class="hotel-image w-full h-full object-cover">
-            <div class="absolute top-4 right-4 bg-[#511730] px-3 py-1 rounded-full text-sm font-bold">
-               <i class="fas fa-star w-4 h-4 text-yellow-400"></i> <a class="text-white">${hotel.calificacion||'N/A'}</a>
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">${hotel.nombre}</h3>
-              <div class="flex items-center gap-2 text-gray-300 mb-4">
-              <i class="fas fa-map-marker-alt w-4 h-4"></i>
-              <span class="text-sm">${hotel.ubicacion}</span>
-              </div>
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-gray-400 text-sm">Desde</p>
-                <p class="text-2xl font-bold text-white">$${hotel.precio_noche} <span class="text-sm text-gray-400">MXN/noche</span></p>
-              </div>
-              <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
-                Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
+   
+    
+    // Claves para Vercel o local
+    const supabaseUrl = '%VITE_SUPABASE_URL%';
+    const supabaseKey = '%VITE_SUPABASE_ANON_KEY%';
+
+    // Si las variables no se reemplazan (desarrollo local sin build step), usa un fallback o muestra un error.
+    if (supabaseUrl.startsWith('%VITE_')) {
+      console.error("Supabase URL no configurada. Revisa tus variables de entorno.");
+      document.getElementById('hotels-grid').innerHTML = '<p class="text-red-400">Error: No se pudo conectar con la base de datos. La configuración de Supabase no está disponible.</p>';
+    } else {
+      const supabase = createClient(supabaseUrl, supabaseKey);
+      loadHotels(supabase);
     }
 
-    // Llama a la función reutilizable para cargar y renderizar los datos.
-    loadDataAndRender('hoteles', 'hotels-grid', renderHotelCard);
+    async function loadHotels(supabase) {
+      const grid = document.getElementById('hotels-grid');
+      let { data: hoteles, error } = await supabase
+        .from('hoteles') // Asegúrate que tu tabla se llame 'hoteles'
+        .select('*');
+
+      if (error) {
+        console.error('Error cargando hoteles:', error);
+        grid.innerHTML = '<p>No se pudieron cargar los hoteles.</p>';
+        return;
+      }
+
+      if (hoteles.length === 0) {
+        grid.innerHTML = '<p>No hay hoteles para mostrar.</p>';
+        return;
+      }
+
+      grid.innerHTML = ''; // Limpiar el mensaje de "Cargando..."
+      hoteles.forEach(hotel => {
+        const hotelCard = `
+          <div class="hotel-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in">
+            <div class="relative h-48 overflow-hidden">
+              <img src="${hotel.imagen_url}" alt="${hotel.nombre}" class="hotel-image w-full h-full object-cover">
+              <div class="absolute top-4 right-4 bg-[#511730] px-3 py-1 rounded-full text-sm font-bold">
+                 <i class="fas fa-star w-4 h-4 text-yellow-400"></i> <a class="text-white">${hotel.calificacion||'N/A'}</a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">${hotel.nombre}</h3>
+                <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt w-4 h-4"></i>
+                <span class="text-sm">${hotel.ubicacion}</span>
+                </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-gray-400 text-sm">Desde</p>
+                  <p class="text-2xl font-bold text-white">$${hotel.precio_noche} <span class="text-sm text-gray-400">MXN/noche</span></p>
+                </div>
+                <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        grid.insertAdjacentHTML('beforeend', hotelCard);
+      });
+    }
   </script>
   
     <script>

@@ -56,44 +56,70 @@
   <script src="script.js"></script>
   <!-- Carga el cliente de Supabase -->
   <script type="module">
-    import { loadDataAndRender } from './JS/data-loader.js';
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-    /**
-     * Define cómo se "dibuja" la tarjeta de un restaurante.
-     * @param {object} restaurante - El objeto de datos del restaurante desde Supabase.
-     * @returns {string} El HTML de la tarjeta.
-     */
-    function renderRestauranteCard(restaurante) {
-      return `
-        <div class="restaurant-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in">
-          <div class="relative h-48 overflow-hidden">
-            <img src="${restaurante.imagen_url}" alt="${restaurante.nombre}" class="restaurant-image w-full h-full object-cover">
-            <div class="absolute top-4 right-4 bg-[#511730] px-3 py-1 rounded-full text-sm font-bold">
-               <i class="fas fa-star w-4 h-4 text-yellow-400"></i> <a class="text-white">${restaurante.calificacion || 'N/A'}</a>
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">${restaurante.nombre}</h3>
-              <div class="flex items-center gap-2 text-gray-300 mb-4">
-              <i class="fas fa-map-marker-alt w-4 h-4"></i>
-              <span class="text-sm">${restaurante.ubicacion}</span>
-              </div>
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-gray-400 text-sm">Especialidad</p>
-                <p class="text-xl font-bold text-white">${restaurante.especialidad || ''}</p>
-              </div>
-              <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
-                Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
+    // Claves para Vercel o local
+    const supabaseUrl = '%VITE_SUPABASE_URL%';
+    const supabaseKey = '%VITE_SUPABASE_ANON_KEY%';
+
+    if (supabaseUrl.startsWith('%VITE_')) {
+      console.error("Supabase URL no configurada. Revisa tus variables de entorno.");
+      document.getElementById('restaurants-grid').innerHTML = '<p class="text-red-400">Error: No se pudo conectar con la base de datos. La configuración de Supabase no está disponible.</p>';
+    } else {
+      const supabase = createClient(supabaseUrl, supabaseKey);
+      loadRestaurantes(supabase);
     }
 
-    // Llama a la función reutilizable para cargar y renderizar los datos.
-    loadDataAndRender('restaurantes', 'restaurants-grid', renderRestauranteCard);
+    async function loadRestaurantes(supabase) {
+      const grid = document.getElementById('restaurants-grid');
+      // Asumimos que tu tabla se llama 'restaurantes'
+      let { data: restaurantes, error } = await supabase
+        .from('restaurantes') 
+        .select('*');
+
+      if (error) {
+        console.error('Error cargando restaurantes:', error);
+        grid.innerHTML = '<p>No se pudieron cargar los restaurantes.</p>';
+        return;
+      }
+
+      if (restaurantes.length === 0) {
+        grid.innerHTML = '<p>No hay restaurantes para mostrar.</p>';
+        return;
+      }
+
+      grid.innerHTML = ''; 
+      restaurantes.forEach(restaurante => {
+        
+        const restauranteCard = `
+          <div class="restaurant-card glass-effect rounded-2xl overflow-hidden shadow-xl fade-in">
+            <div class="relative h-48 overflow-hidden">
+              <img src="${restaurante.imagen_url}" alt="${restaurante.nombre}" class="restaurant-image w-full h-full object-cover">
+              <div class="absolute top-4 right-4 bg-[#511730] px-3 py-1 rounded-full text-sm font-bold">
+                 <i class="fas fa-star w-4 h-4 text-yellow-400"></i> <a class="text-white">${restaurante.calificacion || 'N/A'}</a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">${restaurante.nombre}</h3>
+                <div class="flex items-center gap-2 text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt w-4 h-4"></i>
+                <span class="text-sm">${restaurante.ubicacion}</span>
+                </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-gray-400 text-sm">Precio</p>
+                  <p class="text-2xl font-bold text-white">${restaurante.especialidad || ''}</p>
+                </div>
+                <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        grid.insertAdjacentHTML('beforeend', restauranteCard);
+      });
+    }
   </script>
 </body>
 </html>
