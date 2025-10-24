@@ -117,13 +117,17 @@ let messagesStarted = false;
         // 3. Leer el stream
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
+        let accumulatedText = '';
         
         while (true) {
           const { value, done } = await reader.read();
           if (done) break;
           
           const chunk = decoder.decode(value, { stream: true });
-          botTextElement.textContent += chunk;
+          accumulatedText += chunk;
+
+          const formattedHtml = accumulatedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          botTextElement.innerHTML = formattedHtml;
           chatArea.scrollTop = chatArea.scrollHeight; // Auto-scroll
         }
 
@@ -170,3 +174,4 @@ let messagesStarted = false;
       }
     });
 });
+ 
