@@ -193,6 +193,14 @@ let messagesStarted = false;
   // Cargar el historial 
   loadChatHistory();
 
+  // --- INICIO: Delegación de eventos para el menú ---
+  // En lugar de usar onclick="toggleMenu()" en el HTML, escuchamos los clics en todo el documento.
+  document.addEventListener('click', function(event) {
+    // Si el elemento clickeado (o su contenedor) tiene el atributo 'data-action="toggle-menu"'
+    if (event.target.closest('[data-action="toggle-menu"]')) {
+      toggleMenu();
+    }
+  });
   // 
   const overlayEl = document.getElementById('overlay');
   if (overlayEl) overlayEl.addEventListener('click', toggleMenu);
