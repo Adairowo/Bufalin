@@ -34,47 +34,13 @@ let messagesStarted = false;
       }
     }
 
-    // --- FUNCION GUARDADO DE CHAT---
-
-    /**
-     * Guarda contenido HTML en local storage.
-     */
-    function saveChatHistory() {
-      const messagesContainer = document.getElementById('messagesContainer');
-      localStorage.setItem('chatHistory', messagesContainer.innerHTML);
-    }
-
-    /**
-     * Mostrar en pantalla
-     */
-    function loadChatHistory() {
-      const savedHistory = localStorage.getItem('chatHistory');
-      const messagesContainer = document.getElementById('messagesContainer');
-      const chatArea = document.getElementById('chatArea');
-
-      if (savedHistory && savedHistory.trim() !== '') {
-        messagesContainer.innerHTML = savedHistory;
-        document.getElementById('emptyState').classList.add('hidden');
-        messagesContainer.classList.remove('hidden');
-        messagesStarted = true;
-
-        // Eliminar cualquier indicador de "escribiendo..." que pudo quedar guardado
-        document.getElementById('typing-indicator')?.remove();
-
-        // Scroll hasta el final para ver los últimos mensajes
-        setTimeout(() => chatArea.scrollTop = chatArea.scrollHeight, 100);
-      }
-    }
-
-    // 
-
     async function sendMessage() {
       const input = document.getElementById('messageInput');
       const message = input.value.trim();
       
       if (!message) return;
 
-      // Primer mensaje
+      // First message - hide empty state and show messages
       if (!messagesStarted) {
         document.getElementById('emptyState').classList.add('hidden');
         document.getElementById('messagesContainer').classList.remove('hidden');
@@ -83,7 +49,7 @@ let messagesStarted = false;
 
       const messagesContainer = document.getElementById('messagesContainer');
 
-      // Mensaje usuario
+      // User message
       const userMessageHTML = `
         <div class="flex gap-3 justify-end message-bubble mt-8">
           <div class="glass-effect rounded-2xl rounded-tl-none p-4 max-w-xs shadow-lg break-words">
@@ -94,15 +60,14 @@ let messagesStarted = false;
       
       messagesContainer.insertAdjacentHTML('beforeend', userMessageHTML);
       input.value = '';
-      saveChatHistory(); // Guardar historial 
 
-      // Scroll 
+      // Scroll to bottom
       const chatArea = document.getElementById('chatArea');
       setTimeout(() => {
         chatArea.scrollTop = chatArea.scrollHeight;
       }, 100);
 
-      // Escribiendo
+      // Show typing indicator
       const typingIndicatorHTML = `
         <div id="typing-indicator" class="flex gap-3 mt-8">
           <div class="flex items-center gap-2 text-sm text-gray-400">
@@ -119,7 +84,7 @@ let messagesStarted = false;
         chatArea.scrollTop = chatArea.scrollHeight;
       }, 100);
 
-      
+      // Bot response from our API
       try {
         // 1. Crear el contenedor para la respuesta del bot
         const botMessageContainer = document.createElement('div');
@@ -152,28 +117,19 @@ let messagesStarted = false;
         // 3. Leer el stream
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
-        let accumulatedText = ''; // Acumularemos el texto aquí
         
         while (true) {
           const { value, done } = await reader.read();
           if (done) break;
           
           const chunk = decoder.decode(value, { stream: true });
-          accumulatedText += chunk;
-
-          // Reemplaza **texto** con <strong>texto</strong> para renderizar negritas.
-          // Usamos innerHTML para que el navegador interprete la etiqueta <strong>.
-          const formattedHtml = accumulatedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-          botTextElement.innerHTML = formattedHtml;
+          botTextElement.textContent += chunk;
           chatArea.scrollTop = chatArea.scrollHeight; // Auto-scroll
         }
 
-        // Guardar historial después de que el bot termine de responder
-        saveChatHistory();
-
       } catch (error) {
         console.error("Error al obtener respuesta del bot:", error);
-        document.getElementById('typing-indicator')?.remove(); 
+        document.getElementById('typing-indicator')?.remove(); // Asegurarse de quitarlo en caso de error
         // Mostrar un mensaje de error en el chat
         const errorMessageHTML = `
           <div class="flex gap-3 mt-4 message-bubble">
@@ -182,22 +138,17 @@ let messagesStarted = false;
             </div>
           </div>`;
         messagesContainer.insertAdjacentHTML('beforeend', errorMessageHTML);
-        saveChatHistory(); // Guardar también el mensaje de error
       } finally {
         setTimeout(() => chatArea.scrollTop = chatArea.scrollHeight, 100);
       }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      
-  // Cargar el historial 
-  loadChatHistory();
-
-  // 
+  // safe overlay hookup
   const overlayEl = document.getElementById('overlay');
   if (overlayEl) overlayEl.addEventListener('click', toggleMenu);
 
-  // sidebar
+  // Load sidebar (with basic error handling)
   fetch('sidebar.html')
     .then(response => {
       if (!response.ok) throw new Error('Network response was not ok');
