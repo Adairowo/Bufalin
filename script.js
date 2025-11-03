@@ -52,7 +52,7 @@ let messagesStarted = false;
       // User message
       const userMessageHTML = `
         <div class="flex gap-3 justify-end message-bubble mt-8">
-          <div class="glass-effect rounded-2xl rounded-tl-none p-4 max-w-xs shadow-lg break-words">
+          <div class="glass-effect rounded-2xl rounded-tr-none p-4 max-w-xs shadow-lg break-words">
             <p class="text-sm whitespace-pre-wrap">${message}</p>
           </div>
         </div>
