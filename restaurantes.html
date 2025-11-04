@@ -34,6 +34,7 @@
 
     <!-- Restaurants Section -->
     <div id="restaurantsSection" class="p-6 pb-24">
+
       <div class="max-w-6xl mx-auto">
         <!-- Header -->
         <div class="flex items-center justify-center mb-8 fade-in">
@@ -41,7 +42,7 @@
         </div>
 
         <!-- Restaurants Grid -->
-        <div id="restaurants-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div id="restaurants-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Los restaurantes se cargarán aquí dinámicamente -->
             <div class="flex flex-row gap-2">
                 <div class="w-4 h-4 rounded-full bg-white animate-bounce"></div>
@@ -107,7 +108,7 @@
                 </div>
               <div class="flex items-center justify-between">
                 <div>
-                  <p class="text-gray-400 text-sm">Precio</p>
+                  <p class="text-gray-400 text-sm">Especialidad</p>
                   <p class="text-2xl font-bold text-white">${restaurante.especialidad || ''}</p>
                 </div>
                 <button class="bg-white px-6 py-3 rounded-xl hover:bg-gray-200 transition-all font-semibold text-black">
