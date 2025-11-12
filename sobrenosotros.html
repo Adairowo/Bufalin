@@ -13,9 +13,9 @@
     <!-- Overlay -->
     <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40 hidden opacity-0"></div>
 
-    <div class="flex flex-col min-h-screen text-white gradient-bg">
+    <div class="flex flex-col min-h-screen text-black bg-white">
         <!-- Header -->
-        <header class="glass-effect shadow-lg sticky top-0 z-30">
+        <header class="glass-effect shadow-lg sticky top-0 z-30 gradient-bg">
             <div class="flex items-center justify-between p-4">
                 <button onclick="toggleMenu()" class="p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -33,10 +33,12 @@
         <!-- Main Content -->
         <main class="flex-grow p-6 max-w-4xl mx-auto"> 
             <!-- Agregar secciones sobre nosotros: ej. About us, Mision, Vision, etc. -->
-            <section ></section>
+            <section class="flex-1 overflow-y-auto p-6 pb-24">
+                <h1 >Hola</h1>
+            </section>
         </main>
         <!-- Footer -->
-        <footer class="glass-effect shadow-lg p-4 text-center">
+        <footer class="glass-effect shadow-lg p-4 text-center gradient-bg">
     <p class="text-sm">&copy; 2024 Bufalin. Todos los derechos reservados.</p>
     <div class="mt-3 space-x-4">
         <a href="#" class="text-white hover:text-gray-300">
