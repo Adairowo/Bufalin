@@ -86,22 +86,6 @@ let messagesStarted = false;
 
       // Bot response from our API
       try {
-        // 1. Crear el contenedor para la respuesta del bot
-        const botMessageContainer = document.createElement('div');
-        botMessageContainer.className = "flex gap-3 mt-4 message-bubble";
-        botMessageContainer.innerHTML = `
-          <div class="rounded-2xl rounded-tl-none p-4 max-w-md break-words">
-            <p class="text-sm whitespace-pre-wrap"></p>
-          </div>
-        `;
-        
-        // Quitar el indicador de "escribiendo" y añadir el nuevo contenedor de mensaje
-        document.getElementById('typing-indicator')?.remove();
-        messagesContainer.appendChild(botMessageContainer);
-        const botTextElement = botMessageContainer.querySelector('p');
-        chatArea.scrollTop = chatArea.scrollHeight;
-
-        // 2. Hacer la petición a la API
         const response = await fetch('/api/chat', {
           method: 'POST',
           headers: {
@@ -114,7 +98,23 @@ let messagesStarted = false;
           throw new Error('La respuesta de la red no fue correcta.');
         }
 
-        // 3. Leer el stream
+        // Quitar el indicador de "escribiendo" una vez que la respuesta comienza
+        document.getElementById('typing-indicator')?.remove();
+
+        // 1. Crear el contenedor para la respuesta del bot
+        const botMessageContainer = document.createElement('div');
+        botMessageContainer.className = "flex gap-3 mt-4 message-bubble";
+        botMessageContainer.innerHTML = `
+          <div class="rounded-2xl rounded-tl-none p-4 max-w-md break-words">
+            <p class="text-sm whitespace-pre-wrap"></p>
+          </div>
+        `;
+        
+        messagesContainer.appendChild(botMessageContainer);
+        const botTextElement = botMessageContainer.querySelector('p');
+        chatArea.scrollTop = chatArea.scrollHeight;
+
+        // 2. Leer el stream
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
         let accumulatedText = '';
