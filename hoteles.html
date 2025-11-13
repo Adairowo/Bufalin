@@ -73,18 +73,37 @@
         <div class="flex items-center justify-center mb-8 fade-in">
           <h2 class="text-3xl font-bold text-center w-full">Hoteles Recomendados</h2>
         </div>
-          <a href="" class="menu-item items-center gap-4 p-4 rounded-xl glass-effect mb-6 inline-flex hover:scale-105 transition-transform">
+
+        <!-- Mobile Filter Button -->
+        <div class="md:hidden mb-6">
+          <button class=" flex items-center justify-start gap-3 p-4 rounded-xl glass-effect hover:scale-105 transition-transform">
             <i class="fas fa-sliders-h text-xl w-8 flex-shrink-0 text-center"></i>
             <span class="font-medium text-base">Filtros</span>
-          </a>
-        <!-- Hotels Grid -->
-        <div id="hotels-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Los hoteles se cargaran dinámicamente -->
-            <div class="flex flex-row gap-2">
-              <div class="w-4 h-4 rounded-full bg-white animate-bounce"></div>
-              <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:-.3s]"></div>
-              <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:-.5s]"></div>
+          </button>
+        </div>
+
+        <!-- Main Content Layout (Filters + Grid) -->
+        <div class="flex flex-col md:flex-row md:gap-8">
+          
+          <!-- Filter Sidebar (Desktop) -->
+          <aside class="hidden md:block md:w-1/4 lg:w-1/5">
+            <div class="glass-effect rounded-2xl p-6 sticky top-24">
+              <h3 class="text-xl font-bold mb-6">Filtros</h3>
             </div>
+          </aside>
+
+          <!-- Hotels Grid -->
+          <div class="w-full md:w-3/4 lg:w-4/5">
+            <div id="hotels-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- Los hoteles se cargaran dinámicamente -->
+                <div class="flex flex-row gap-2">
+                  <div class="w-4 h-4 rounded-full bg-white animate-bounce"></div>
+                  <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:-.3s]"></div>
+                  <div class="w-4 h-4 rounded-full bg-white animate-bounce [animation-delay:-.5s]"></div>
+                </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
