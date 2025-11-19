@@ -70,9 +70,8 @@ let messagesStarted = false;
       // Show typing indicator
       const typingIndicatorHTML = `
         <div id="typing-indicator" class="flex gap-3 mt-8">
-          <div class="flex items-center gap-2 text-sm text-gray-400">
-            <img src="img/bufaliiin.png" alt="Bufalín" class="w-8 h-8 rounded-full object-cover" />
-            <span>Bufalín está escribiendo...</span>
+          <div class="flex items-center gap-2 text-sm white">
+            <span>Bufalín está pensando</span>
             <div class="w-2 h-2 rounded-full bg-white animate-bounce [animation-delay:-.3s]"></div>
             <div class="w-2 h-2 rounded-full bg-white animate-bounce [animation-delay:-.15s]"></div>
             <div class="w-2 h-2 rounded-full bg-white animate-bounce"></div>
